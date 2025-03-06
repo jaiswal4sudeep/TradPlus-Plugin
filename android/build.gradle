@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:8.7.0")
+        classpath("com.android.tools.build:gradle:8.7.3")
     }
 }
 
@@ -32,10 +32,42 @@ android {
     }
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 23
     }
 
     dependencies {
+        implementation 'com.google.android.material:material:1.4.0'
+        implementation 'androidx.annotation:annotation:1.9.1'
+        implementation 'androidx.core:core-ktx:1.15.0'
+
+        // TradPlus
+        implementation 'com.tradplusad:tradplus:13.4.20.1'
+        //noinspection GradleCompatible
+        implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+        implementation 'androidx.appcompat:appcompat:1.7.0'
+        // Admob
+        implementation 'com.google.android.gms:play-services-ads:24.0.0'
+        implementation 'com.tradplusad:tradplus-googlex:2.13.4.20.1'
+        // Meta
+        implementation 'com.facebook.android:audience-network-sdk:6.18.0'
+        implementation 'com.tradplusad:tradplus-facebook:1.13.4.20.1'
+        // Applovin
+        implementation 'com.applovin:applovin-sdk:13.1.0'
+        implementation 'com.tradplusad:tradplus-applovin:9.13.4.20.1'
+        implementation 'com.google.android.gms:play-services-ads-identifier:18.2.0'
+        // Mintegral
+        implementation 'com.tradplusad:tradplus-mintegralx_overseas:18.13.4.20.1'
+        implementation 'androidx.recyclerview:recyclerview:1.4.0'
+        //implementation 'com.mbridge.msdk.oversea:mbridge_android_sdk:16.9.31'
+
+        // Cross Promotion
+        implementation 'com.tradplusad:tradplus-crosspromotion:27.13.4.20.1'
+        // TP Exchange
+        // 请注意保持与主包版本同步更新
+        implementation 'com.google.code.gson:gson:2.10.1'
+        implementation 'com.tradplusad:tp_exchange:40.13.4.20.1'
+
+        // Testing dependencies
         testImplementation("junit:junit:4.13.2")
         testImplementation("org.mockito:mockito-core:5.0.0")
     }
@@ -43,10 +75,13 @@ android {
     testOptions {
         unitTests.all {
             testLogging {
-               events "passed", "skipped", "failed", "standardOut", "standardError"
-               outputs.upToDateWhen {false}
-               showStandardStreams = true
+                events "passed", "skipped", "failed", "standardOut", "standardError"
+                outputs.upToDateWhen {false}
+                showStandardStreams = true
             }
         }
     }
+
+    buildToolsVersion '34.0.0'
+    ndkVersion '27.0.12077973'
 }

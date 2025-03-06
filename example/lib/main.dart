@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:tradplus_plugin/tradplus_plugin.dart';
 
 void main() {
@@ -16,46 +13,61 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  final _tradplusPlugin = TradplusPlugin();
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await _tradplusPlugin.getPlatformVersion() ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
-  }
+  String status = '';
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
+        appBar: AppBar(title: const Text('Plugin Example App')),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 25,
+            children: [
+              ElevatedButton(
+                onPressed: () async {
+                  final bool init = await TradplusPlugin.initializeSdk(
+                    'F91EC1E49B138D03F3B7951D3DB2D51C',
+                  );
+                  setState(() {
+                    status =
+                        init
+                            ? '✅ TradPlus SDK Initialized Successfully'
+                            : '❌ TradPlus SDK Initialization Failed';
+                  });
+                },
+                child: Text('Initialize SDK'),
+              ),
+
+              ElevatedButton(
+                onPressed: () async {
+                  final bool load = await TradplusPlugin.loadAd(
+                    'B781F40DCE54575939DBA531D8C4B08B',
+                  );
+                  setState(() {
+                    status =
+                        load
+                            ? '✅ Ad Loaded Successfully'
+                            : '❌ Ad Loading Failed';
+                  });
+                  
+                  final bool show = await TradplusPlugin.showAd();
+                  setState(() {
+                    status =
+                        show
+                            ? '✅ Ad Displayed Successfully'
+                            : '❌ Ad Display Failed';
+                  });
+                },
+                child: Text('Show Ad'),
+              ),
+              Text(
+                status,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
         ),
       ),
     );

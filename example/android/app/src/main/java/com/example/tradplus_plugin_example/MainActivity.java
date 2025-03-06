@@ -1,4 +1,4 @@
-package com.example.tradplus_plugin_example;
+package com.cashgamers.android;
 
 import io.flutter.embedding.android.FlutterActivity;
 

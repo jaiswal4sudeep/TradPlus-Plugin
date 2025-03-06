@@ -6,9 +6,9 @@ plugins {
 }
 
 android {
-    namespace = "com.example.tradplus_plugin_example"
+    namespace = "com.cashgamers.android"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -21,13 +21,18 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.tradplus_plugin_example"
+        applicationId = "com.cashgamers.android"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        minSdk = 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+    }
+
+    dependencies {
+        implementation("androidx.appcompat:appcompat:1.3.1")
+        implementation("com.google.android.material:material:1.4.0") // <-- Add this line
     }
 
     buildTypes {
