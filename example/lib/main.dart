@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
 
               ElevatedButton(
                 onPressed: () async {
-                  final bool load = await TradplusPlugin.loadAd(
+                  final bool load = await TradplusPlugin.showAd(
                     'B781F40DCE54575939DBA531D8C4B08B',
                   );
                   setState(() {
@@ -50,14 +50,6 @@ class _MyAppState extends State<MyApp> {
                         load
                             ? '✅ Ad Loaded Successfully'
                             : '❌ Ad Loading Failed';
-                  });
-                  
-                  final bool show = await TradplusPlugin.showAd();
-                  setState(() {
-                    status =
-                        show
-                            ? '✅ Ad Displayed Successfully'
-                            : '❌ Ad Display Failed';
                   });
                 },
                 child: Text('Show Ad'),

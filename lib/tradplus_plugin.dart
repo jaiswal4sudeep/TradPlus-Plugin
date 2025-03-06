@@ -14,23 +14,19 @@ class TradplusPlugin {
     }
   }
 
-  static Future<bool> loadAd(String adUnitId) async {
+  static Future<bool> showAd(String adUnitId) async {
     try {
-      final bool result = await _channel.invokeMethod('loadAd', {
+      final bool isLoaded = await _channel.invokeMethod('loadAd', {
         'adUnitId': adUnitId,
       });
-      return result;
-    } catch (e) {
-      return false;
-    }
-  }
 
-  static Future<bool> showAd() async {
-    try {
-      final bool result = await _channel.invokeMethod('showAd');
-      return result;
+      if (isLoaded) {
+        final bool isShown = await _channel.invokeMethod('showAd');
+        return isShown;
+      }
     } catch (e) {
       return false;
     }
+    return false;
   }
 }
