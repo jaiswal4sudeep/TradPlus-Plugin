@@ -39,7 +39,6 @@ class _MyAppState extends State<MyApp> {
                 },
                 child: Text('Initialize SDK'),
               ),
-
               ElevatedButton(
                 onPressed: () async {
                   final bool load = await TradplusPlugin.showAd(
