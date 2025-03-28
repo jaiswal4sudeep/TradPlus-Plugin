@@ -28,8 +28,8 @@ class _MyAppState extends State<MyApp> {
               ElevatedButton(
                 onPressed: () async {
                   final bool init = await TradplusPlugin.initializeSdk(
-                    appId: 'F91EC1E49B138D03F3B7951D3DB2D51C',
-                    adUnitId: 'B781F40DCE54575939DBA531D8C4B08B',
+                    appId: 'EE565D090FABE278A7F32D0FAFE0A471',
+                    adUnitId: '3A46BF1E93DB77B6047429195B3AF153',
                   );
                   setState(() {
                     status =
@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
               ElevatedButton(
                 onPressed: () async {
                   final bool load = await TradplusPlugin.showAd(
-                    adUnitId: 'B781F40DCE54575939DBA531D8C4B08B',
+                    adUnitId: '3A46BF1E93DB77B6047429195B3AF153',
                   );
                   setState(() {
                     status =

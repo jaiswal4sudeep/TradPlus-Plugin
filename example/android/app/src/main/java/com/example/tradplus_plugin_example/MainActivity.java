@@ -1,4 +1,4 @@
-package com.cashgamers.android;
+package com.cashbear.app;
 
 import io.flutter.embedding.android.FlutterActivity;
 
